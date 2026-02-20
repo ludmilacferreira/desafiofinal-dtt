@@ -127,11 +127,14 @@ Base URL: `http://localhost:5134/api/equipamentos`
    cd desafiofinal-dtt
    ```
 
-2. Suba somente o PostgreSQL via Docker:
+2. Entre na pasta do projeto e suba somente o PostgreSQL via Docker:
    ```bash
    cd ApiMina
    docker compose up postgres -d
    ```
+   > **Importante:** O arquivo `docker-compose.yml` esta dentro da pasta `ApiMina/`.
+   > Voce precisa estar dentro dessa pasta para executar o `docker compose`.
+   > Caso esteja na raiz do repositorio, use: `docker compose -f ApiMina/docker-compose.yml up postgres -d`
 
 3. Crie o banco de dados executando o script SQL:
    ```bash
@@ -139,9 +142,8 @@ Base URL: `http://localhost:5134/api/equipamentos`
    ```
    A senha padrao e `postgres`.
 
-4. Execute a API:
+4. Execute a API (ainda dentro da pasta `ApiMina/`):
    ```bash
-   cd ApiMina
    dotnet run
    ```
 
