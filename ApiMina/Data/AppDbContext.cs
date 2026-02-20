@@ -10,39 +10,44 @@ namespace DesafioFinal.Data
         public DbSet<Equipamento> Equipamentos => Set<Equipamento>();
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.HasDefaultSchema("public");
+{
+    modelBuilder.HasDefaultSchema("public");
 
-            modelBuilder.Entity<Equipamento>(e =>
-            {
-                e.ToTable("equipamentos");
+    modelBuilder.Entity<Equipamento>(e =>
+    {
+        e.ToTable("equipamentos");
 
-                e.HasKey(x => x.Id);
+        e.HasKey(x => x.Id);
+        
+        // Mapeamento explícito de nomes (C# PascalCase -> SQL snake_case)
+        e.Property(x => x.StatusOperacional).HasColumnName("status_operacional");
+        e.Property(x => x.LocalizacaoAtual).HasColumnName("localizacao_atual");
+        e.Property(x => x.DataAquisicao).HasColumnName("data_aquisicao");
 
-                e.Property(x => x.Codigo)
-                    .HasMaxLength(50)
-                    .IsRequired();
+        e.Property(x => x.Codigo)
+            .HasMaxLength(50)
+            .IsRequired();
 
-                e.HasIndex(x => x.Codigo)
-                    .IsUnique();
+        e.HasIndex(x => x.Codigo)
+            .IsUnique();
 
-                e.Property(x => x.Modelo)
-                    .HasMaxLength(120)
-                    .IsRequired();
+        e.Property(x => x.Modelo)
+            .HasMaxLength(120)
+            .IsRequired();
 
-                e.Property(x => x.LocalizacaoAtual)
-                    .HasMaxLength(200)
-                    .IsRequired();
+        e.Property(x => x.LocalizacaoAtual)
+            .HasMaxLength(200)
+            .IsRequired();
 
-                e.Property(x => x.Horimetro)
-                    .HasColumnType("numeric(12,2)");
+        e.Property(x => x.Horimetro)
+            .HasColumnType("numeric(12,2)");
 
-                e.Property(x => x.Tipo)
-                    .HasConversion<int>();
+        e.Property(x => x.Tipo)
+            .HasConversion<int>();
 
-                e.Property(x => x.StatusOperacional)
-                    .HasConversion<int>();
-            });
-        }
+        e.Property(x => x.StatusOperacional)
+            .HasConversion<int>();
+    });
+}
     }
 }

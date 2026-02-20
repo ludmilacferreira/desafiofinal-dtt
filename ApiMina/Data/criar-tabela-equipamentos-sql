@@ -1,7 +1,3 @@
-
-CREATE SCHEMA IF NOT EXISTS public;
-
-
 DROP TABLE IF EXISTS public.equipamentos CASCADE;
 
 CREATE TABLE public.equipamentos (
@@ -15,14 +11,12 @@ CREATE TABLE public.equipamentos (
     localizacao_atual     VARCHAR(200)   NOT NULL
 );
 
-CREATE UNIQUE INDEX ux_equipamentos_codigo
-    ON public.equipamentos (codigo);
+CREATE UNIQUE INDEX ux_equipamentos_codigo ON public.equipamentos (codigo);
 
 ALTER TABLE public.equipamentos
     ADD CONSTRAINT chk_horimetro_positivo CHECK (horimetro >= 0),
     ADD CONSTRAINT chk_tipo_valido CHECK (tipo IN (0, 1, 2, 3, 4)),
     ADD CONSTRAINT chk_status_valido CHECK (status_operacional IN (0, 1, 2));
-
 
 INSERT INTO public.equipamentos
 (codigo, tipo, modelo, horimetro, status_operacional, data_aquisicao, localizacao_atual)
@@ -33,4 +27,4 @@ VALUES
 ('SAN-DT4000-0015', 0, 'Sandvik DT4000',       5400.00, 2, '2022-01-05', 'Patio de Estacionamento'),
 ('LIE-R9800-0003',  1, 'Liebherr R 9800',     15600.75, 0, '2017-06-30', 'Mina Carajas N4E');
 
-SELECT * FROM public.equipamentos ORDER BY id;
+select * from equipamentos order by id;
