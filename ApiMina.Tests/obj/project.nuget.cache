@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "g75LEu5Xz/I=",
+  "dgSpecHash": "UTFWWgtR1xU=",
   "success": true,
   "projectFilePath": "C:\\Users\\aluno\\desafiofinal-dtt\\ApiMina.Tests\\ApiMina.Tests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\aluno\\.nuget\\packages\\coverlet.collector\\6.0.4\\coverlet.collector.6.0.4.nupkg.sha512",
     "C:\\Users\\aluno\\.nuget\\packages\\efcore.namingconventions\\10.0.1\\efcore.namingconventions.10.0.1.nupkg.sha512",
+    "C:\\Users\\aluno\\.nuget\\packages\\junitxml.testlogger\\8.0.0\\junitxml.testlogger.8.0.0.nupkg.sha512",
     "C:\\Users\\aluno\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.3.0\\microsoft.aspnetcore.authentication.abstractions.2.3.0.nupkg.sha512",
     "C:\\Users\\aluno\\.nuget\\packages\\microsoft.aspnetcore.authentication.core\\2.3.0\\microsoft.aspnetcore.authentication.core.2.3.0.nupkg.sha512",
     "C:\\Users\\aluno\\.nuget\\packages\\microsoft.aspnetcore.authorization\\2.3.0\\microsoft.aspnetcore.authorization.2.3.0.nupkg.sha512",

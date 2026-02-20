@@ -22,6 +22,12 @@
           "lib/net10.0/EFCore.NamingConventions.dll": {}
         }
       },
+      "JunitXml.TestLogger/8.0.0": {
+        "type": "package",
+        "build": {
+          "build/netstandard2.0/JUnitXml.TestLogger.props": {}
+        }
+      },
       "Microsoft.AspNetCore.Authentication.Abstractions/2.3.0": {
         "type": "package",
         "dependencies": {
@@ -1302,6 +1308,23 @@
         "efcore.namingconventions.10.0.1.nupkg.sha512",
         "efcore.namingconventions.nuspec",
         "lib/net10.0/EFCore.NamingConventions.dll"
+      ]
+    },
+    "JunitXml.TestLogger/8.0.0": {
+      "sha512": "rO2ugKcbVy8SHNKeqfX/DshUcTtolnEUwMKehVB6gh5/YoL+U07zoACCyGRvgMtzq7fr9o6GLkXOmVj9WMgx+w==",
+      "type": "package",
+      "path": "junitxml.testlogger/8.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "build/_common/Microsoft.VisualStudio.TestPlatform.Extension.JUnit.Xml.TestLogger.dll",
+        "build/_common/Spekt.TestLogger.dll",
+        "build/netstandard2.0/JUnitXml.TestLogger.props",
+        "docs/CHANGELOG.md",
+        "docs/README.md",
+        "junitxml.testlogger.8.0.0.nupkg.sha512",
+        "junitxml.testlogger.nuspec",
+        "packageIcon.png"
       ]
     },
     "Microsoft.AspNetCore.Authentication.Abstractions/2.3.0": {
@@ -2919,6 +2942,7 @@
   "projectFileDependencyGroups": {
     "net10.0": [
       "ApiMina >= 1.0.0",
+      "JunitXml.TestLogger >= 8.0.0",
       "Microsoft.AspNetCore.Mvc.Core >= 2.3.9",
       "Microsoft.EntityFrameworkCore.InMemory >= 10.0.2",
       "Microsoft.NET.Test.Sdk >= 17.14.1",
@@ -2974,6 +2998,10 @@
       "net10.0": {
         "targetAlias": "net10.0",
         "dependencies": {
+          "JunitXml.TestLogger": {
+            "target": "Package",
+            "version": "[8.0.0, )"
+          },
           "Microsoft.AspNetCore.Mvc.Core": {
             "target": "Package",
             "version": "[2.3.9, )"
