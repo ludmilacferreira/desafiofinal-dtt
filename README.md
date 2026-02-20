@@ -2,7 +2,7 @@
 
 API desenvolvida em ASP.NET Core (.NET 10) para gerenciamento de equipamentos pesados de mineracao, permitindo cadastro, consulta, atualizacao, remocao e filtros por tipo, status, codigo e modelo.
 
-## Tecnologias Utilizadas
+# Tecnologias Utilizadas
 
 - .NET 10
 - Entity Framework Core 10
@@ -24,30 +24,30 @@ API desenvolvida em ASP.NET Core (.NET 10) para gerenciamento de equipamentos pe
 ## Fluxo de Status Operacional
 
 Os status validos sao:
-```
+```bash
 Operacional | EmManutencao | Parado
 ```
 
 ## Endpoints
 
 Base URL:
-```
+```bash
 http://localhost:8080/api/equipamentos
 ```
 
-**GET /api/equipamentos**
+*GET /api/equipamentos*
 Lista todos os equipamentos (paginado, com filtros).
 
-**GET /api/equipamentos/{id}**
+*GET /api/equipamentos/{id}*
 Retorna equipamento por ID.
 
-**POST /api/equipamentos**
+*POST /api/equipamentos*
 Cria um novo equipamento.
 
-**PUT /api/equipamentos/{id}**
+*PUT /api/equipamentos/{id}*
 Atualiza equipamento completo.
 
-**DELETE /api/equipamentos/{id}**
+*DELETE /api/equipamentos/{id}*
 Remove equipamento.
 
 ### Parametros de Query (GET lista)
@@ -71,7 +71,7 @@ git clone https://github.com/ludmilacferreira/desafiofinal-dtt.git
 cd desafiofinal-dtt/ApiMina
 ```
 
-### 2 - Subir os Containers
+### 2 - Subir os Containeres
 ```bash
 docker-compose up -d
 ```
@@ -88,53 +88,46 @@ docker ps
 ### 4 - Acessar a API
 
 Swagger:
-```
+```bash
 http://localhost:8080/swagger
 ```
 
 Base API:
-```
+```bash
 http://localhost:8080/api/equipamentos
 ```
 
-## Rodando sem Docker
+## Criando a tabela manualmente (DBeaver ou outro cliente SQL)
 
-### 1 - Pre-requisitos
-- .NET 10 SDK
-- PostgreSQL 16
+### Conexao com PostgreSQL
 
-### 2 - Configurar o banco
-Ajuste a connection string em `ApiMina/appsettings.json`:
-```json
-{
-  "ConnectionStrings": {
-    "DefaultConnection": "Host=localhost;Port=5432;Database=apimina_db;Username=postgres;Password=postgres"
-  }
-}
-```
-
-### 3 - Criar a tabela
-Execute o script SQL disponivel em `ApiMina/Data/criar-tabela-equipamentos-sql` no seu cliente PostgreSQL.
-
-### 4 - Rodar a API
+Host:
 ```bash
-cd ApiMina
-dotnet run
+localhost
 ```
-A API estara disponivel em `http://localhost:5134`.
 
-## Conexao com PostgreSQL (DBeaver ou outro cliente SQL)
+Porta:
+```bash
+5432
+```
 
-| Campo    | Valor           |
-|----------|-----------------|
-| Host     | localhost       |
-| Porta    | 5432            |
-| Database | apimina_db      |
-| Usuario  | postgres        |
-| Senha    | postgres        |
+Database:
+```bash
+apimina_db
+```
 
-### Script de Criacao de Tabela
-```sql
+Usuario:
+```bash
+postgres
+```
+
+Senha:
+```bash
+postgres
+```
+
+### Script de Criacao de tabela
+```SQL
 CREATE TABLE public.equipamentos (
     id                    SERIAL PRIMARY KEY,
     codigo                VARCHAR(50)    NOT NULL,
@@ -178,7 +171,3 @@ O relatorio HTML esta disponivel em `ApiMina.Tests/coveragereport/index.html`.
 - Validacao manual no controller
 - Uso de DTOs para entrada e saida
 - Paginacao com limite maximo de 50 itens por pagina
-
-
-
-    
