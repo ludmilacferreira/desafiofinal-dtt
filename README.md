@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # ApiMina - API de Gerenciamento de Equipamentos de Mineracao
+=======
+# Desafio Final
+>>>>>>> 1017907af921871d6e65dcae964014ab506c2709
 
 API RESTful para gerenciamento de equipamentos pesados de mineracao, desenvolvida como desafio final do programa DTT.
 
@@ -299,3 +303,4 @@ O script SQL em `Data/criar-tabela-equipamentos-sql` ja insere 5 registros de ex
 ## Autora
 
 Ludmila Ferreira - [GitHub](https://github.com/ludmilacferreira)
+
