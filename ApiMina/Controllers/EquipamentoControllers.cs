@@ -13,8 +13,6 @@ namespace ApiMina.Controllers
 
         public EquipamentosController(DesafioFinal.Data.AppDbContext db) => _db = db;
 
-
-
         private static readonly string[] TiposValidos = { "Caminhao", "Escavadeira", "Perfuratriz", "Carregadeira", "Trator" };
         private static readonly string[] StatusValidos = { "Operacional", "EmManutencao", "Parado" };
 
@@ -73,11 +71,9 @@ namespace ApiMina.Controllers
             e.LocalizacaoAtual
         );
 
-
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateEquipamentoDto input)
         {
-  
             if (string.IsNullOrWhiteSpace(input.Codigo))
                 return BadRequest(new { message = "Codigo e obrigatorio." });
 
@@ -101,7 +97,6 @@ namespace ApiMina.Controllers
             if (input.Horimetro < 0)
                 return BadRequest(new { message = "Horimetro nao pode ser negativo." });
 
-        
             var exists = await _db.Equipamentos.AnyAsync(x => x.Codigo == input.Codigo);
             if (exists)
                 return Conflict(new { message = $"Ja existe um equipamento com o Codigo '{input.Codigo}'." });
@@ -123,14 +118,14 @@ namespace ApiMina.Controllers
             return CreatedAtAction(nameof(GetById), new { id = equipamento.Id }, ToResponseDto(equipamento));
         }
 
- 
         [HttpGet]
         public async Task<IActionResult> GetAll(
             [FromQuery] int page = 1,
             [FromQuery] int pageSize = 10,
             [FromQuery] string? tipo = null,
             [FromQuery] string? status = null,
-            [FromQuery] string? codigo = null)
+            [FromQuery] string? codigo = null,
+            [FromQuery] string? modelo = null) // Parâmetro adicionado
         {
             if (page < 1) page = 1;
             if (pageSize < 1) pageSize = 10;
@@ -138,7 +133,7 @@ namespace ApiMina.Controllers
 
             var query = _db.Equipamentos.AsQueryable();
 
-
+            
             if (!string.IsNullOrWhiteSpace(tipo))
             {
                 if (TryParseTipo(tipo, out var tipoEnum))
@@ -147,7 +142,7 @@ namespace ApiMina.Controllers
                     return BadRequest(new { message = $"Filtro 'tipo' invalido. Valores aceitos: {string.Join(", ", TiposValidos)}" });
             }
 
-
+            
             if (!string.IsNullOrWhiteSpace(status))
             {
                 if (TryParseStatus(status, out var statusEnum))
@@ -156,9 +151,13 @@ namespace ApiMina.Controllers
                     return BadRequest(new { message = $"Filtro 'status' invalido. Valores aceitos: {string.Join(", ", StatusValidos)}" });
             }
 
-         
+            
             if (!string.IsNullOrWhiteSpace(codigo))
                 query = query.Where(x => x.Codigo.ToLower().Contains(codigo.ToLower()));
+
+            
+            if (!string.IsNullOrWhiteSpace(modelo))
+                query = query.Where(x => x.Modelo.ToLower().Contains(modelo.ToLower()));
 
             var totalCount = await query.CountAsync();
             var totalPages = (int)Math.Ceiling(totalCount / (double)pageSize);
@@ -195,7 +194,6 @@ namespace ApiMina.Controllers
         [HttpPut("{id:int}")]
         public async Task<IActionResult> Update(int id, [FromBody] UpdateEquipamentoDto input)
         {
-           
             if (string.IsNullOrWhiteSpace(input.Codigo))
                 return BadRequest(new { message = "Codigo e obrigatorio." });
 
@@ -213,19 +211,16 @@ namespace ApiMina.Controllers
             if (input.Horimetro < 0)
                 return BadRequest(new { message = "Horimetro nao pode ser negativo." });
 
-         
             var equipamento = await _db.Equipamentos.FindAsync(id);
             if (equipamento == null)
                 return NotFound(new { message = "Equipamento nao encontrado para atualizacao." });
 
-     
             if (equipamento.Codigo != input.Codigo)
             {
                 var codigoJaExiste = await _db.Equipamentos.AnyAsync(x => x.Codigo == input.Codigo);
                 if (codigoJaExiste)
                     return Conflict(new { message = $"Ja existe outro equipamento com o codigo '{input.Codigo}'." });
             }
-
 
             equipamento.Codigo = input.Codigo;
             equipamento.Tipo = tipo;
@@ -242,15 +237,12 @@ namespace ApiMina.Controllers
             return NoContent();
         }
 
-
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> Delete(int id)
         {
-    
             var equipamento = await _db.Equipamentos.FindAsync(id);
             if (equipamento == null)
                 return NotFound(new { message = "Equipamento nao encontrado para exclusao." });
-
 
             _db.Equipamentos.Remove(equipamento);
             await _db.SaveChangesAsync();

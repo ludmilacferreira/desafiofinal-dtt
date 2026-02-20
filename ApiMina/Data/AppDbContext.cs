@@ -19,7 +19,7 @@ namespace DesafioFinal.Data
 
         e.HasKey(x => x.Id);
         
-        // Mapeamento explícito de nomes (C# PascalCase -> SQL snake_case)
+  
         e.Property(x => x.StatusOperacional).HasColumnName("status_operacional");
         e.Property(x => x.LocalizacaoAtual).HasColumnName("localizacao_atual");
         e.Property(x => x.DataAquisicao).HasColumnName("data_aquisicao");

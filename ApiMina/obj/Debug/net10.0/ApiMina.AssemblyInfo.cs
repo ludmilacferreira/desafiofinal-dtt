@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ApiMina")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+299beb29df7d3f8ef9c7f40137678e8b5240154a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6b8f795392aef33dd2aea29654de8a36827c92f2")]
 [assembly: System.Reflection.AssemblyProductAttribute("ApiMina")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ApiMina")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
