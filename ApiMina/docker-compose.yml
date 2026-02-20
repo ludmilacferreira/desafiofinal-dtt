@@ -24,18 +24,18 @@ services:
       io.rancher.container.pull_image: always
       io.rancher.container.name: "PostgreSQL - Estudos"
 
-    api:
-    build: 
-      context: ./apimina 
+  api:
+    build:
+      context: .
       dockerfile: Dockerfile
-      container_name: vale_api
-      restart: unless-stopped
+    container_name: vale_api
+    restart: unless-stopped
     depends_on:
       postgres:
         condition: service_healthy
-      ports:
+    ports:
       - "8080:8080"
-      environment:
+    environment:
       - ConnectionStrings__DefaultConnection=Host=postgres;Port=5432;Database=${POSTGRES_DB:-apimina_db};Username=${POSTGRES_USER:-postgres};Password=${POSTGRES_PASSWORD:-postgres}
 
 volumes:
